@@ -35,5 +35,6 @@ namespace UnitTests
             calc.SetOperation(val => Math.Sqrt(val));
             Assert.IsNull(calc.Evaluate());
         }
+
     }
 }

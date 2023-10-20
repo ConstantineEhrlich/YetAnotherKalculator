@@ -3,8 +3,8 @@
     /// <inheritdoc/>
     public class Calculator : ICalculator
     {
-        // Stores the operation. Default operation => return display value.
-        private Func<double, double, double> _operation = (display, memory) => display;
+        // Stores the operation
+        private Func<double, double, double>? _operation = null;
 
         // Initialize both registers with zero
         private double _memory = 0;
@@ -15,6 +15,9 @@
 
         public double? Evaluate()
         {
+            if (_operation is null)
+                return _display;
+
             double result;
             try
             {
