@@ -4,8 +4,7 @@
     public class Calculator : ICalculator
     {
         // Stores the operation. Default operation => return display value.
-        private Func<double, double, double> _operation = _defaultOperation;
-        private static double _defaultOperation(double display, double memory) => display;
+        private Func<double, double, double> _operation = (display, memory) => display;
 
         // Initialize both registers with zero
         private double _memory = 0;
