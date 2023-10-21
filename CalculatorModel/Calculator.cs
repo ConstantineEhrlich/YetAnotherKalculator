@@ -1,51 +1,130 @@
-﻿namespace CalculatorModel
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CalculatorModel
 {
-    /// <inheritdoc/>
     public class Calculator : ICalculator
     {
-        // Stores the operation
-        private Func<double, double, double>? _operation = null;
-
-        // Initialize both registers with zero
-        private double _memory = 0;
-        private double _display = 0;
-        public double MemoryRegister => _memory;
-        public double DisplayRegister => _display;
-
-
-        public double? Evaluate()
+        private readonly Dictionary<char, Func<double, double, double>> _operationCodes = new()
         {
-            if (_operation is null)
-                return _display;
+            { '+', (a, b) => a + b },
+            { '-', (a, b) => a - b },
+            { '/', (a, b) => a / b },
+            { '*', (a, b) => a * b },
+            { 'q', (a, b) => Math.Sqrt(b) },
+        };
 
-            double result;
-            try
-            {
-                result = _operation(_display, _memory);
-                // If the result is NaN, return null, else return the result
-                return double.IsNaN(result) ? null : result;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
+        private bool _repeatMode;
+        private bool _error;
+        private readonly ICalculatorInput _inputStack;
+        private readonly ICalculatorCore _calc;
 
-        public void SetOperation(Func<double, double, double> operation)
+
+        /// <summary>
+        /// Initializes a new calculator with a specified input size.
+        /// </summary>
+        /// <param name="inputSize">Input size (default = 8)</param>
+        public Calculator(ICalculatorInput inputStack, ICalculatorCore calculatorCore)
         {
-            _operation = operation;
+            _repeatMode = false;
+            _error = false;
+            _inputStack = inputStack;
+            _calc = calculatorCore;
         }
 
 
-        public void SetOperation(Func<double, double> operation)
+        /// <summary>
+        /// Represents calculator display value
+        /// </summary>
+        public double DisplayValue => _calc.DisplayRegister;
+
+
+        /// <summary>
+        /// Represents error state. Set to True if last evaluation returned null (resulted in error).
+        /// </summary>
+        public bool Error { get => _error; }
+
+
+        /// <summary>
+        /// Adds a digit to the input stack and updates the display value
+        /// </summary>
+        public void EnterDigit(uint digit)
         {
-            _operation = (display, memory) => operation(display);
+            _repeatMode = false;
+            _inputStack.AddDigit(digit);
+            _calc.SetDisplayValue(_inputStack.Value);
         }
 
-        public void SetDisplayValue(double value)
+
+        /// <summary>
+        /// Removes last entered digit or the decimal point
+        /// </summary>
+        public void RemoveDigit()
         {
-            _memory = _display;
-            _display = value;
+            _inputStack.RemoveDigit();
+            _calc.SetDisplayValue(_inputStack.Value);
+        }
+
+
+        /// <summary>
+        /// Sets decimal point
+        /// </summary>
+        public void EnterDecimalPoint()
+        {
+            _inputStack.SetDecimalPoint();
+            _calc.SetDisplayValue(_inputStack.Value);
+        }
+
+
+        /// <summary>
+        /// Accept the input and set the operation to execute
+        /// </summary>
+        /// <param name="opCode"></param>
+        public void EnterOperation(char opCode)
+        {
+            if (!_operationCodes.ContainsKey(opCode))
+                return;
+
+            _repeatMode = false;
+            _inputStack.Reset();
+
+            double? interimValue = _calc.Evaluate();
+
+            if (interimValue is null)
+                _error = true;
+
+            _calc.SetDisplayValue(interimValue ?? 0);
+            _calc.PushToMemory();
+
+            _calc.SetOperation(_operationCodes[opCode]);
+        }
+
+
+        /// <summary>
+        /// Performs the calculation and puts the result in the display register
+        /// </summary>
+        public void Calculate()
+        {
+            double? val = _repeatMode ? _calc.Repeat() : _calc.Evaluate();
+            if (val is null)
+                _error = true;
+            _calc.SetDisplayValue(val ?? 0);
+            _repeatMode = true;
+        }
+
+
+        /// <summary>
+        /// Resets everything
+        /// </summary>
+        public void Reset()
+        {
+            _calc.Reset();
+            _inputStack.Reset();
+            _repeatMode = false;
+            _error = false;
         }
     }
 }

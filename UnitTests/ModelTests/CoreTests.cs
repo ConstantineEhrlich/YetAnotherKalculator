@@ -2,17 +2,18 @@ using CalculatorModel;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests
+namespace UnitTests.ModelTests
 {
     [TestClass]
-    public class CalculatorModelTests
+    public class CoreTests
     {
         [TestMethod]
         public void EvaluateBinaryOperation()
         {
-            Calculator calc = new();
+            CalculatorCore calc = new();
             calc.SetDisplayValue(1.5);
-            calc.SetOperation((display, memory) => display + memory);
+            calc.PushToMemory();
+            calc.SetOperation((memory, display) => memory + display);
             calc.SetDisplayValue(2.5);
             Assert.AreEqual(4.0, calc.Evaluate());
         }
@@ -20,9 +21,9 @@ namespace UnitTests
         [TestMethod]
         public void EvaluateUnaryOperation()
         {
-            Calculator calc = new();
+            CalculatorCore calc = new();
             calc.SetDisplayValue(4);
-            calc.SetOperation(display => Math.Sqrt(display));
+            calc.SetOperation((memory, display) => Math.Sqrt(display));
             Assert.AreEqual(2, calc.Evaluate());
         }
 
@@ -30,9 +31,9 @@ namespace UnitTests
         [TestMethod]
         public void ReturnNullForIllegalOp()
         {
-            Calculator calc = new();
+            CalculatorCore calc = new();
             calc.SetDisplayValue(-5);
-            calc.SetOperation(val => Math.Sqrt(val));
+            calc.SetOperation((memory, display) => Math.Sqrt(display));
             Assert.IsNull(calc.Evaluate());
         }
 
