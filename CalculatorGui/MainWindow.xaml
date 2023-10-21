@@ -8,12 +8,18 @@
         mc:Ignorable="d"
         Title="YAK - Yet Another Kalculator" Height="616" Width="400">
 
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+    </Window.Resources>
+    
     <DockPanel>
         <TextBox
             DockPanel.Dock="Top"
             FontFamily="Consolas"
             FontWeight="Bold"
-            FontSize="36"
+            FontSize="48"
             TextAlignment="Right"
             Text="{Binding Display}"
             />
