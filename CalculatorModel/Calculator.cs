@@ -45,8 +45,7 @@ namespace CalculatorModel
             _inputStack.AddDigit(digit);
             _calc.SetDisplayValue(_inputStack.Value);
         }
-
-
+        
         
         public void RemoveDigit()
         {
@@ -54,15 +53,13 @@ namespace CalculatorModel
             _calc.SetDisplayValue(_inputStack.Value);
         }
 
-
-        
+                
         public void EnterDecimalPoint()
         {
             _inputStack.SetDecimalPoint();
             _calc.SetDisplayValue(_inputStack.Value);
         }
-
-
+        
         
         public void EnterOperation(char opCode)
         {
@@ -83,7 +80,6 @@ namespace CalculatorModel
             _calc.SetOperation(_operationCodes[opCode]);
         }
 
-
         
         public void Calculate()
         {
@@ -93,8 +89,7 @@ namespace CalculatorModel
             _calc.SetDisplayValue(val ?? 0);
             _repeatMode = true;
         }
-
-
+        
         
         public void Reset()
         {
@@ -103,6 +98,7 @@ namespace CalculatorModel
             _repeatMode = false;
             _error = false;
         }
+
 
         public void LearnOperation(char opCode, Func<double, double, double> operation)
         {

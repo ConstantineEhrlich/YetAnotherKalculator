@@ -35,8 +35,8 @@
         /// <summary>
         /// Learns a new operation
         /// </summary>
-        /// <param name="opCode"></param>
-        /// <param name="operation"></param>
+        /// <param name="opCode">Operation code character</param>
+        /// <param name="operation">The delegate, that accepts two doubles and returns evaluated double</param>
         public void LearnOperation(char opCode, Func<double, double, double> operation);
 
 
