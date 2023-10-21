@@ -20,8 +20,4 @@
     <ProjectReference Include="..\CalculatorModel\CalculatorModel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModelTests\" />
-  </ItemGroup>
-
 </Project>

@@ -1,0 +1,59 @@
+﻿<Window x:Class="CalculatorGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalculatorGui"
+        d:DataContext="{d:DesignInstance Type=local:CalculatorModelView}"
+        mc:Ignorable="d"
+        Title="YAK - Yet Another Kalculator" Height="616" Width="400">
+
+    <DockPanel>
+        <TextBox
+            DockPanel.Dock="Top"
+            FontFamily="Consolas"
+            FontWeight="Bold"
+            FontSize="36"
+            TextAlignment="Right"
+            Text="{Binding Display}"
+            />
+
+        <Grid  Margin="5" ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Content="1" CommandParameter="1" Command="{Binding EnterDigit}"        Grid.Row="3" Grid.Column="0"/>
+            <Button Content="2" CommandParameter="2" Command="{Binding EnterDigit}"        Grid.Row="3" Grid.Column="1"/>
+            <Button Content="3" CommandParameter="3" Command="{Binding EnterDigit}"        Grid.Row="3" Grid.Column="2"/>
+            <Button Content="4" CommandParameter="4" Command="{Binding EnterDigit}"        Grid.Row="2" Grid.Column="0"/>
+            <Button Content="5" CommandParameter="5" Command="{Binding EnterDigit}"        Grid.Row="2" Grid.Column="1"/>
+            <Button Content="6" CommandParameter="6" Command="{Binding EnterDigit}"        Grid.Row="2" Grid.Column="2"/>
+            <Button Content="7" CommandParameter="7" Command="{Binding EnterDigit}"        Grid.Row="1" Grid.Column="0"/>
+            <Button Content="8" CommandParameter="8" Command="{Binding EnterDigit}"        Grid.Row="1" Grid.Column="1"/>
+            <Button Content="9" CommandParameter="9" Command="{Binding EnterDigit}"        Grid.Row="1" Grid.Column="2"/>
+            <Button Content="0" CommandParameter="0" Command="{Binding EnterDigit}"        Grid.Row="4" Grid.Column="1"/>
+            <Button Content="." CommandParameter="0" Command="{Binding EnterDecimalPoint}" Grid.Row="4" Grid.Column="0"/>
+            <Button Content="&lt;"                   Command="{Binding RemoveDigit}"       Grid.Row="0" Grid.Column="1"/>
+            <Button Content="R"                      Command="{Binding Reset}"             Grid.Row="0" Grid.Column="0"/>
+            <Button Content="/" CommandParameter="/" Command="{Binding EnterOperation}"    Grid.Row="0" Grid.Column="3"/>
+            <Button Content="X" CommandParameter="*" Command="{Binding EnterOperation}"    Grid.Row="1" Grid.Column="3"/>
+            <Button Content="-" CommandParameter="-" Command="{Binding EnterOperation}"    Grid.Row="2" Grid.Column="3"/>
+            <Button Content="+" CommandParameter="+" Command="{Binding EnterOperation}"    Grid.Row="3" Grid.Column="3"/>
+            <Button Content="="                      Command="{Binding Calculate}"         Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2"/>
+            
+        </Grid>
+    </DockPanel>
+
+
+</Window>
