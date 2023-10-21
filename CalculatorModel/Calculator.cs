@@ -35,22 +35,10 @@ namespace CalculatorModel
             _calc = calculatorCore;
         }
 
-
-        /// <summary>
-        /// Represents calculator display value
-        /// </summary>
         public double DisplayValue => _calc.DisplayRegister;
 
-
-        /// <summary>
-        /// Represents error state. Set to True if last evaluation returned null (resulted in error).
-        /// </summary>
         public bool Error { get => _error; }
 
-
-        /// <summary>
-        /// Adds a digit to the input stack and updates the display value
-        /// </summary>
         public void EnterDigit(uint digit)
         {
             _repeatMode = false;
@@ -59,9 +47,7 @@ namespace CalculatorModel
         }
 
 
-        /// <summary>
-        /// Removes last entered digit or the decimal point
-        /// </summary>
+        
         public void RemoveDigit()
         {
             _inputStack.RemoveDigit();
@@ -69,9 +55,7 @@ namespace CalculatorModel
         }
 
 
-        /// <summary>
-        /// Sets decimal point
-        /// </summary>
+        
         public void EnterDecimalPoint()
         {
             _inputStack.SetDecimalPoint();
@@ -79,10 +63,7 @@ namespace CalculatorModel
         }
 
 
-        /// <summary>
-        /// Accept the input and set the operation to execute
-        /// </summary>
-        /// <param name="opCode"></param>
+        
         public void EnterOperation(char opCode)
         {
             if (!_operationCodes.ContainsKey(opCode))
@@ -103,9 +84,7 @@ namespace CalculatorModel
         }
 
 
-        /// <summary>
-        /// Performs the calculation and puts the result in the display register
-        /// </summary>
+        
         public void Calculate()
         {
             double? val = _repeatMode ? _calc.Repeat() : _calc.Evaluate();
@@ -116,15 +95,18 @@ namespace CalculatorModel
         }
 
 
-        /// <summary>
-        /// Resets everything
-        /// </summary>
+        
         public void Reset()
         {
             _calc.Reset();
             _inputStack.Reset();
             _repeatMode = false;
             _error = false;
+        }
+
+        public void LearnOperation(char opCode, Func<double, double, double> operation)
+        {
+            _operationCodes[opCode] = operation;
         }
     }
 }
