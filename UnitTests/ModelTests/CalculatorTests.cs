@@ -107,5 +107,18 @@ namespace UnitTests.ModelTests
             calc.Calculate();
             Assert.IsTrue(calc.Error);
         }
+
+
+        [TestMethod]
+        public void TestLearnOp()
+        {
+            Calculator calc = new(new CalculatorInput(), new CalculatorCore());
+            calc.LearnOperation('2', (a, b) => Math.Pow(b, 2));
+            calc.EnterDigit(1);
+            calc.EnterDigit(8);
+            calc.EnterOperation('2');
+            calc.Calculate();
+            Assert.AreEqual(324, calc.DisplayValue);
+        }
     }
 }
