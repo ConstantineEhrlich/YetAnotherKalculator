@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalculatorGui"
-        d:DataContext="{d:DesignInstance Type=local:CalculatorModelView}"
+        d:DataContext="{d:DesignInstance Type=local:CalculatorViewModel}"
         mc:Ignorable="d"
         Title="YAK - Yet Another Kalculator" Height="616" Width="400">
 

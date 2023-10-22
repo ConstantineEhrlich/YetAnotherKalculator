@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\CalculatorModel\CalculatorModel.csproj"/>
+        <ProjectReference Include="..\CalculatorModel\CalculatorModel.csproj" />
     </ItemGroup>
 
 </Project>

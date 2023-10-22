@@ -9,7 +9,7 @@ public partial class MainWindow : Window
 {
     public MainWindow()
     {
-        CalculatorModelView calc = new(new Calculator(new CalculatorInput(), new CalculatorCore()));
+        CalculatorViewModel calc = new(new Calculator(new CalculatorInput(), new CalculatorCore()));
         DataContext = calc;
         InitializeComponent();
     }

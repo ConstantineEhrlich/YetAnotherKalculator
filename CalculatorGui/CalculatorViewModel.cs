@@ -2,11 +2,11 @@
 
 namespace CalculatorGui;
 
-public class CalculatorModelView : INotifyPropertyChanged
+public class CalculatorViewModel : INotifyPropertyChanged
 {
     private readonly ICalculator _calculator;
 
-    public CalculatorModelView(ICalculator calculator)
+    public CalculatorViewModel(ICalculator calculator)
     {
         _calculator = calculator;
         EnterDigit = Command(digit => _calculator.EnterDigit(uint.Parse(digit?.ToString()!)));
