@@ -59,10 +59,23 @@ public class Calculator : ICalculator
         if (!_operationCodes.ContainsKey(opCode))
             return;
 
-        _repeatMode = false;
         _inputStack.Reset();
 
-        var interimValue = _calc.Evaluate();
+
+        //double? interimValue = _repeatMode ? 0 : _calc.Evaluate();
+        double? interimValue;
+
+        if (_repeatMode)
+        {
+            _calc.PushToMemory();
+            interimValue = _calc.DisplayRegister;
+        }
+        else
+        {
+            interimValue = _calc.Evaluate();
+        }
+
+        _repeatMode = false;
 
         if (interimValue is null)
             Error = true;
@@ -76,7 +89,8 @@ public class Calculator : ICalculator
 
     public void Calculate()
     {
-        var val = _repeatMode ? _calc.Repeat() : _calc.Evaluate();
+        _inputStack.Reset();
+        double? val = _repeatMode ? _calc.Repeat() : _calc.Evaluate();
         if (val is null)
             Error = true;
         _calc.SetDisplayValue(val ?? 0);
@@ -96,5 +110,11 @@ public class Calculator : ICalculator
     public void LearnOperation(char opCode, Func<double, double, double> operation)
     {
         _operationCodes[opCode] = operation;
+    }
+
+
+    public void ChangeSign()
+    {
+        _calc.SetDisplayValue(DisplayValue * -1);
     }
 }

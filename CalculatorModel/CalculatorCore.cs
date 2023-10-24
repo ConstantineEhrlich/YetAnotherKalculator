@@ -2,9 +2,6 @@
 
 public class CalculatorCore : ICalculatorCore
 {
-    // Initialize both registers with zero
-
-    // Stores the operation
     private Func<double, double, double>? _operation;
 
     public double MemoryRegister { get; private set; }

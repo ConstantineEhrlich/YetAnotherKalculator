@@ -52,6 +52,12 @@ public interface ICalculator
     /// </summary>
     void RemoveDigit();
 
+    
+    /// <summary>
+    /// Changes the sign of the display value
+    /// </summary>
+    void ChangeSign();
+
 
     /// <summary>
     ///     Resets the calculator state

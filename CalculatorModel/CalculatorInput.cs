@@ -24,10 +24,11 @@ public class CalculatorInput : ICalculatorInput
         get
         {
             double value = 0;
-            var stack = _displayStack.ToArray();
+            uint[] stack = _displayStack.ToArray();
 
             // Calculate 
-            for (var i = stack.Length - 1; i >= 0; i--) value = value * 10 + stack[i];
+            for (int i = stack.Length - 1; i >= 0; i--)
+                value = value * 10 + stack[i];
 
             // Apply decimal position
             value /= Math.Pow(10, DecimalPosition);
