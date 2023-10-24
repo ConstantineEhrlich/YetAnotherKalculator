@@ -11,6 +11,7 @@
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="FontSize" Value="24" />
+            <Setter Property="Margin" Value="2"/>
         </Style>
     </Window.Resources>
 
@@ -21,9 +22,10 @@
             FontWeight="Bold"
             FontSize="48"
             TextAlignment="Right"
-            Text="{Binding Display}" />
+            Text="{Binding Display}"
+            Margin="4"/>
 
-        <Grid Margin="5" ShowGridLines="False">
+        <Grid ShowGridLines="False" Margin="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -38,24 +40,26 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Button Content="1" CommandParameter="1" Command="{Binding EnterDigit}" Grid.Row="3" Grid.Column="0" />
-            <Button Content="2" CommandParameter="2" Command="{Binding EnterDigit}" Grid.Row="3" Grid.Column="1" />
-            <Button Content="3" CommandParameter="3" Command="{Binding EnterDigit}" Grid.Row="3" Grid.Column="2" />
-            <Button Content="4" CommandParameter="4" Command="{Binding EnterDigit}" Grid.Row="2" Grid.Column="0" />
-            <Button Content="5" CommandParameter="5" Command="{Binding EnterDigit}" Grid.Row="2" Grid.Column="1" />
-            <Button Content="6" CommandParameter="6" Command="{Binding EnterDigit}" Grid.Row="2" Grid.Column="2" />
-            <Button Content="7" CommandParameter="7" Command="{Binding EnterDigit}" Grid.Row="1" Grid.Column="0" />
-            <Button Content="8" CommandParameter="8" Command="{Binding EnterDigit}" Grid.Row="1" Grid.Column="1" />
-            <Button Content="9" CommandParameter="9" Command="{Binding EnterDigit}" Grid.Row="1" Grid.Column="2" />
-            <Button Content="0" CommandParameter="0" Command="{Binding EnterDigit}" Grid.Row="4" Grid.Column="1" />
-            <Button Content="." CommandParameter="0" Command="{Binding EnterDecimalPoint}" Grid.Row="4" Grid.Column="0" />
-            <Button Content="&lt;" Command="{Binding RemoveDigit}" Grid.Row="0" Grid.Column="1" />
-            <Button Content="R" Command="{Binding Reset}" Grid.Row="0" Grid.Column="0" />
-            <Button Content="/" CommandParameter="/" Command="{Binding EnterOperation}" Grid.Row="0" Grid.Column="3" />
-            <Button Content="X" CommandParameter="*" Command="{Binding EnterOperation}" Grid.Row="1" Grid.Column="3" />
-            <Button Content="-" CommandParameter="-" Command="{Binding EnterOperation}" Grid.Row="2" Grid.Column="3" />
-            <Button Content="+" CommandParameter="+" Command="{Binding EnterOperation}" Grid.Row="3" Grid.Column="3" />
-            <Button Content="=" Command="{Binding Calculate}" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" />
+            <Button Content="1" CommandParameter="1" Command="{Binding EnterDigit}"         Grid.Row="3" Grid.Column="0" />
+            <Button Content="2" CommandParameter="2" Command="{Binding EnterDigit}"         Grid.Row="3" Grid.Column="1" />
+            <Button Content="3" CommandParameter="3" Command="{Binding EnterDigit}"         Grid.Row="3" Grid.Column="2" />
+            <Button Content="4" CommandParameter="4" Command="{Binding EnterDigit}"         Grid.Row="2" Grid.Column="0" />
+            <Button Content="5" CommandParameter="5" Command="{Binding EnterDigit}"         Grid.Row="2" Grid.Column="1" />
+            <Button Content="6" CommandParameter="6" Command="{Binding EnterDigit}"         Grid.Row="2" Grid.Column="2" />
+            <Button Content="7" CommandParameter="7" Command="{Binding EnterDigit}"         Grid.Row="1" Grid.Column="0" />
+            <Button Content="8" CommandParameter="8" Command="{Binding EnterDigit}"         Grid.Row="1" Grid.Column="1" />
+            <Button Content="9" CommandParameter="9" Command="{Binding EnterDigit}"         Grid.Row="1" Grid.Column="2" />
+            <Button Content="0" CommandParameter="0" Command="{Binding EnterDigit}"         Grid.Row="4" Grid.Column="1" />
+            <Button Content="."                      Command="{Binding EnterDecimalPoint}"  Grid.Row="4" Grid.Column="0" />
+            <Button Content="&lt;"                   Command="{Binding RemoveDigit}"        Grid.Row="0" Grid.Column="1" />
+            <Button Content="R"                      Command="{Binding Reset}"              Grid.Row="0" Grid.Column="0" />
+            <Button Content="/" CommandParameter="/" Command="{Binding EnterOperation}"     Grid.Row="0" Grid.Column="3" />
+            <Button Content="X" CommandParameter="*" Command="{Binding EnterOperation}"     Grid.Row="1" Grid.Column="3" />
+            <Button Content="-" CommandParameter="-" Command="{Binding EnterOperation}"     Grid.Row="2" Grid.Column="3" />
+            <Button Content="+" CommandParameter="+" Command="{Binding EnterOperation}"     Grid.Row="3" Grid.Column="3" />
+            <Button Content="q" CommandParameter="q" Command="{Binding EnterOperation}"     Grid.Row="0" Grid.Column="2" />
+            <Button Content="="                      Command="{Binding Calculate}"          Grid.Row="4" Grid.Column="3" />
+            <Button Content="+/-"                    Command="{Binding ChangeSign}"         Grid.Row="4" Grid.Column="2" />
 
         </Grid>
     </DockPanel>
