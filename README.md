@@ -13,7 +13,7 @@ The purpose of the project is to demonstrate a basic implementation of the MVVM 
 - `ICalculator.cs` - this interface represents the functionality that may be consumed by the user:
     - Properties `DisplayValue` and `Error` to represent calculator's state
     - Methods `EnterDigit()`, `RemoveDigit()`, `EnterDecimalPoint()` to handle the input
-    - Methods `EnterOperation()`, `Calculate()` and `Reset()` for processing the input
+    - Methods `EnterOperation()`, `Calculate()`, `ChangeSign()` and `Reset()` for processing the caculations
 - `Calculator.cs` - implements the ICalculator interface, combining the implementations of the Core and Input interfaces.
 
 #### CalculatorGui
@@ -22,5 +22,5 @@ The purpose of the project is to demonstrate a basic implementation of the MVVM 
 
 
 ### Demo
-https://github.com/ConstantineEhrlich/YetAnotherKalculator/assets/45981312/2ce5488c-98c9-4acd-a238-7ede8e20c88f
+https://github.com/ConstantineEhrlich/YetAnotherKalculator/assets/45981312/d3f06612-cd7f-405b-8425-e8ea2c68f029
 
